@@ -6,8 +6,7 @@ import (
 
 	// "github.com/gobuffalo/flect"
 	"github.com/gofrs/uuid/v5"
-	"github.com/owezzy/go-fundamentals/demo/foo"
-	"foo"
+	"github.com/owezzy/go-fundamentals/foo"
 )
 
 func main(){

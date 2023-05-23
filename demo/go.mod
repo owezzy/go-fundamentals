@@ -1,4 +1,4 @@
-module	github.com/owezzy/go-fundamentals/demo/foo
+module	github.com/owezzy/go-fundamentals
 
 
 go 1.20
