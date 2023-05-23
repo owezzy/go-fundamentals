@@ -6,7 +6,7 @@ import (
 
 	// "github.com/gobuffalo/flect"
 	"github.com/gofrs/uuid/v5"
-	"github.com/owen_adira/go-fundamentals/foo"
+	"github.com/owen_adira/go-fundamentals/demo/foo"
 	"foo"
 )
 

@@ -1,4 +1,4 @@
-module	github.com/owen_adira/go-fundamentals/foo
+module	github.com/owen_adira/go-fundamentals/demo/foo
 
 
 go 1.20
