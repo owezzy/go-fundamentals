@@ -1,5 +1,6 @@
-module demo
+module	github.com/owen_adira/go-fundamentals/foo
+
 
 go 1.20
 
-require github.com/gobuffalo/flect v1.0.2
+require github.com/gofrs/uuid/v5 v5.0.0
