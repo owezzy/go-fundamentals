@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"log"
+	// "fmt"
+	// "log"
 
 	// "github.com/gobuffalo/flect"
-	"github.com/gofrs/uuid/v5"
+	// "github.com/gofrs/uuid/v5"
 	"github.com/owezzy/go-fundamentals/foo"
 )
 
