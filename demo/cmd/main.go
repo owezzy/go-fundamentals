@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"sort"
 	"strings"
 
 	// "log"
@@ -169,7 +171,6 @@ func main() {
 		fmt.Println(i)
 	}
 
-
 	// use break to stop iteration
 	for i := 0; i < 10; i++ {
 		if i == 3 {
@@ -178,6 +179,90 @@ func main() {
 
 		fmt.Println(i)
 	}
+
+	// MAPS
+	fmt.Println("MAPS")
+
+	// declare and initialize map is recommended way
+	user := map[string]string{"owe": "owe@gmail.com", "que": "que@gmail.com"}
+
+	fmt.Println(user)
+
+	watu := map[User]string{}
+
+	mtu := User{ID: 1, Name: "Owezzy"}
+	watu[mtu] = "owezzy@example.com"
+
+	fmt.Println(watu)
+
+	// interation order is random
+	for key, value := range user {
+		fmt.Println(key, value)
+	}
+
+	// when you just need the key
+	for key := range user {
+		fmt.Println(key, user[key])
+	}
+
+	// delete value using its key
+
+	delete(user, "owe")
+	fmt.Println("after delete", user)
+
+	// to check value exits and hanlde err
+
+	data := map[int]string{}
+
+	data[1] = "Hello, Word"
+
+	value, ok := data[1]
+
+	if !ok {
+		fmt.Printf("key %d not found\n", 10)
+		os.Exit(1)
+	}
+
+	fmt.Printf("%q\n", value)
+
+	// using Zero value in maps
+	counts := map[string]int{}
+
+	sentence := "The quick fox jumps over the lazy dog"
+
+	words := strings.Fields(strings.ToLower(sentence))
+
+	for _, w := range words {
+		// counts[w] = counts[w] + 1 or
+		counts[w]++
+	}
+
+	fmt.Println(counts)
+
+	months := map[int]string{
+		1: "Jan",
+		2: "Feb",
+		3: "Mar",
+		4: "Apr",
+		5: "May",
+		6: "June",
+	}
+
+	keys := make([]int, 0, len(months))
+
+	for k := range months {
+		keys = append(keys, k)
+	}
+
+	sort.Ints(keys)
+
+	fmt.Printf("keys: %+v\n", keys)
+
+}
+
+type User struct {
+	ID   int
+	Name string
 }
 
 func Values() (int, float64, bool, string) {
