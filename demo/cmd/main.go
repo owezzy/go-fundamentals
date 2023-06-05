@@ -258,6 +258,55 @@ func main() {
 
 	fmt.Printf("keys: %+v\n", keys)
 
+	// if statements
+	greet := true
+
+	if greet {
+		fmt.Println("Hello")
+	} else {
+		fmt.Println("Goodbye")
+	}
+
+	if 1 == 1 {
+		fmt.Println("1 == 1")
+	}
+
+	if 1 != 2 {
+		fmt.Println("1 != 2")
+	}
+	if 2 > 1 {
+		fmt.Println("2 > 1")
+	}
+	if 1 < 2 {
+		fmt.Println("1 < 2")
+	}
+	if 1 >= 1 {
+		fmt.Println("1 >= 1")
+	}
+	if 1 <= 1 {
+		fmt.Println("1 <= 1")
+	}
+
+	// switch statement
+	mwezi := 3
+
+	switch mwezi {
+	case  1:
+		fmt.Println("Jan")
+	case  2:
+		fmt.Println("Feb")
+	case  3:
+		fmt.Println("March")
+	case 4:
+		fmt.Println("April")
+	case  5:
+		fmt.Println("May")
+
+	}
+
+	recommendActivity(19)
+	recommendActivity(45)
+	recommendActivity(90)
 }
 
 type User struct {
@@ -274,4 +323,24 @@ func slicesOnly(letters []string) {
 	for _, letter := range letters {
 		fmt.Println(letter)
 	}
+}
+
+func recommendActivity(temp int){
+	fmt.Printf("It is %d degrees out. You could", temp)
+
+	switch{
+	case temp <= 32:
+		fmt.Print(" go ice skating")
+		fallthrough
+	case temp >=45 && temp <= 90:
+		fmt.Print(" go jogging")
+		fallthrough
+	case temp >= 80:
+		fmt.Print(" go swimming")
+		fallthrough
+	default:
+		fmt.Print(" or just stay at home. \n")
+	}
+
+
 }
