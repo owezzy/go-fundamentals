@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 	"sort"
 	"strings"
@@ -291,15 +293,15 @@ func main() {
 	mwezi := 3
 
 	switch mwezi {
-	case  1:
+	case 1:
 		fmt.Println("Jan")
-	case  2:
+	case 2:
 		fmt.Println("Feb")
-	case  3:
+	case 3:
 		fmt.Println("March")
 	case 4:
 		fmt.Println("April")
-	case  5:
+	case 5:
 		fmt.Println("May")
 
 	}
@@ -307,11 +309,59 @@ func main() {
 	recommendActivity(19)
 	recommendActivity(45)
 	recommendActivity(90)
+
+	fn := func() string {
+		return "Hello Owezzy Fn"
+	}
+
+	sayHello(fn)
+	sayHelloVariadic("owezzy", "kun", "kunta")
+
+	u := User{
+		ID:       1,
+		Name:     "owezzy",
+		Password: "secrert",
+	}
+
+	fmt.Printf("%+v\n", u)
+
+	enc := json.NewEncoder(os.Stdout)
+
+	if err := enc.Encode(u); err != nil {
+		log.Fatal(err)
+	}
+
+
+	sayHelloGreeter(func() string {
+		return "Hello from Greeter method"
+	})
+
+
+	// 6.4 pointers example
+	s := new(string)
+	*s = "qwerty"
+	i := new(int)
+	*i = 42
+	u1 := new(User6)
+	u2 := &User6{}
+
+	fmt.Printf("s: %v, *s: %q\n", s, *s)
+	fmt.Printf("i: %v, *si: %d\n", i, *i)
+	fmt.Printf("u1: %+v, *f: %+v\n", u1, *u1)
+	fmt.Printf("u2: %+v, *f1: %+v\n", u2, *u2)
+
+
 }
 
 type User struct {
-	ID   int
-	Name string
+	ID       int    `json:"id"`
+	Name     string `json:"name"`
+	Phone    string `json:"phone,omitempty"`
+	Password string `json:"-"`
+}
+
+func (u User6) String() string{
+	return fmt.Sprintf("%s is %d", u.Name, u.Age)
 }
 
 func Values() (int, float64, bool, string) {
@@ -325,14 +375,14 @@ func slicesOnly(letters []string) {
 	}
 }
 
-func recommendActivity(temp int){
+func recommendActivity(temp int) {
 	fmt.Printf("It is %d degrees out. You could", temp)
 
-	switch{
+	switch {
 	case temp <= 32:
 		fmt.Print(" go ice skating")
 		fallthrough
-	case temp >=45 && temp <= 90:
+	case temp >= 45 && temp <= 90:
 		fmt.Print(" go jogging")
 		fallthrough
 	case temp >= 80:
@@ -342,5 +392,34 @@ func recommendActivity(temp int){
 		fmt.Print(" or just stay at home. \n")
 	}
 
+}
 
+// function as arguement
+
+func sayHello(fn func() string) {
+	fmt.Println(fn())
+}
+
+// variadic arguement
+
+func sayHelloVariadic(names ...string) {
+	for _, n := range names {
+
+		fmt.Printf("Hello there %s\n", n)
+	}
+}
+
+// leson 6: Structs, methods and Pointers
+
+type User6 struct {
+	Name string
+	Age  int
+}
+
+//  greeter is a function that returns a string
+
+type Greeter func() string
+
+func sayHelloGreeter(fn Greeter) {
+	fmt.Println(fn())
 }
